@@ -1,0 +1,121 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #473144;
+  }
+  
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 1rem 0;
+    color: #AF1B3F;
+  }
+  
+  header {
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav {
+    border-top: 2px solid #EFC69B;
+    border-bottom: 2px solid #EFC69B;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  nav .main-nav {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: end;
+    justify-items: end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav .main-nav li {
+    margin: 0 1rem;
+  }
+  
+  nav .main-nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #AF1B3F;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .article {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+    background: white;
+    padding: 1rem;
+  }
+  
+  .article-details {
+    font-size: 0.9rem;
+    color: #6e6e6e;
+  }
+  
+  .article-details p {
+    margin: 0.5rem 0;
+  }
+  
+  .article-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #473144;
+  }
+  
+  .article-content p {
+    font-size: 1rem;
+  }
+  
+  .image-placeholder img {
+    max-width: 100%;
+  }
+  
+  .filters-placeholder {
+    font-size: 1rem;
+    text-align: center;
+    color: #6e6e6e;
+    margin: 2rem 0;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #473144;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  
+  .skiptocontent a {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #EFC69B;
+    color: #473144;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .skiptocontent a:focus {
+    top: 0;
+  }
+  
