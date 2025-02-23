@@ -1,0 +1,188 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    background: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  /* TITLE */
+  h1 {
+    margin-bottom: 1rem;
+  }
+  
+  /* FORM CONTAINER */
+  .creditcard-form {
+    display: grid;
+    /* front card in col 1, back card in col 2, button in row 2 spanning both */
+    grid-template-areas:
+      "front back"
+      "submit submit";
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  /* FRONT CARD */
+  .card-front {
+    grid-area: front;
+    width: 340px;
+    min-height: 180px;
+    background: #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  
+    /* We'll do a simple vertical stack; 
+       but we grouped .card-top and .holder-expiration-row for clarity */
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Card top row: total + chip aligned right */
+  .card-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  
+  /* TOTAL PRICE */
+  .card-total {
+    font-weight: bold;
+  }
+  
+  /* CHIP IMAGE (Right-aligned by auto column) */
+  .card-image {
+    width: 40px;
+    height: auto;
+  }
+  
+  /* CARD NUMBER (full width) */
+  .card-number {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ROW FOR HOLDER + EXPIRATION */
+  .holder-expiration-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* half & half */
+    gap: 1rem;
+  }
+  
+  /* CARD HOLDER */
+  .card-holder {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* EXPIRATION: has sub-div for the two inputs side by side */
+  .expiration {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .expiration .exp-fields {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .expiration .exp-fields input {
+    width: 45px;       /* smaller width */
+    text-align: center;
+  }
+  
+  /* BACK CARD */
+  .card-back {
+    grid-area: back;
+    width: 350px;
+    min-height: 120px;
+    background: #ccc;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  
+    /* Shift behind front card diagonally: 
+       left negative for overlap, top positive to push it down */
+    margin-left: -240px;
+    margin-top: 40px;
+  
+    display: grid;
+    grid-template-rows: 30px auto;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* BLACK STRIPE, full width, no rounding */
+  .mag-strip {
+    background-color: #222;
+    border-radius: 0;
+    grid-column: 1 / -1;
+    
+    /* Force edge-to-edge ignoring .card-back's padding */
+    margin: 0 -1rem;
+    width: calc(100% + 2rem);
+    height: 25px;
+  }
+  
+  /* CVC FIELD: place in right column */
+  .cvc {
+    grid-column: 2 / 3;
+    align-self: center;
+    justify-self: end;
+  }
+  
+  /* SUBMIT BUTTON */
+  button {
+    grid-area: submit;
+    justify-self: end;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #e0e0e0;
+  }
+  
+  /* LABELS */
+  .input-group label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+  }
+  
+  /* SHARED INPUT STYLES (for all .input-group input) */
+  .input-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.4rem;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+  }
+  
+  /* SPECIFIC OVERRIDE FOR CVC FIELD */
+  .cvc input {
+    width: 35px;      /* short horizontally */
+    padding: 0.3rem;  /* smaller padding */
+    text-align: center;
+  }
+  
