@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+:root {
+  --primary-color: #1B98E0;
+  --secondary-color: #007373;
+  --text-dark: #333;
+  --text-light: #ebebeb;
+  --primary-font: 'Open Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--primary-font);
+  color: var(--text-dark);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+main {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+footer {
+  width: 100%;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.branding img {
+  width: 40px;
+  height: auto;
+}
+
+header form {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+}
+
+header input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+header button {
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  padding: 0.5rem 1rem;
+  background: var(--secondary-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+main {
+  flex: 1;
+}
+
+.recipe {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.recipe img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.tag {
+  background: var(--secondary-color);
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.recipe h2 {
+  margin-bottom: 0.25rem;
+}
+
+.rating {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.social {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social img {
+  width: 24px;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .recipe {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .recipe img {
+    width: 40%;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  .recipe-content {
+    width: 60%;
+  }
+  .tags {
+    justify-content: flex-start;
+  }
+}
