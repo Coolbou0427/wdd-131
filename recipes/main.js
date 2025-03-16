@@ -1,54 +1,88 @@
-import { recipes } from "./recipes.mjs"
+import { recipes } from "./recipes.mjs";
+
+function random(num) {
+  return Math.floor(Math.random() * num);
+}
+
+function getRandomListEntry(list) {
+  return list[random(list.length)];
+}
+
+function tagsTemplate(tags) {
+  let html = "";
+  tags.forEach(tag => {
+    html += `<li>${tag}</li>`;
+  });
+  return html;
+}
+
+function ratingTemplate(rating) {
+  let html = `<span class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">`;
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      html += `<span aria-hidden="true" class="icon-star">⭐</span>`;
+    } else {
+      html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`;
+    }
+  }
+  html += `</span>`;
+  return html;
+}
+
+function recipeTemplate(recipe) {
+  return `<figure class="recipe">
+    <img src="${recipe.image}" alt="image of ${recipe.title}" />
+    <figcaption>
+      <ul class="recipe__tags">
+        ${tagsTemplate(recipe.tags)}
+      </ul>
+      <h2><a href="#">${recipe.title}</a></h2>
+      <p class="recipe__ratings">
+        ${ratingTemplate(recipe.rating)}
+      </p>
+      <p class="recipe__description">
+        ${recipe.description}
+      </p>
+    </figcaption>
+  </figure>`;
+}
+
+function renderRecipes(recipeList) {
+  const mainElement = document.querySelector("main");
+  let html = "";
+  recipeList.forEach(recipe => {
+    html += recipeTemplate(recipe);
+  });
+  mainElement.innerHTML = html;
+}
+
+function init() {
+  const recipe = getRandomListEntry(recipes);
+  renderRecipes([recipe]);
+}
+
+function filterRecipes(query) {
+  const filtered = recipes.filter(recipe => {
+    const lowerName = recipe.title.toLowerCase();
+    const lowerDesc = recipe.description.toLowerCase();
+    const lowerTags = recipe.tags.map(tag => tag.toLowerCase());
+    return lowerName.includes(query) ||
+           lowerDesc.includes(query) ||
+           lowerTags.some(tag => tag.includes(query));
+  });
+  return filtered.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+function searchHandler(e) {
+  e.preventDefault();
+  const searchInput = document.querySelector('header input[type="search"]');
+  const query = searchInput.value.toLowerCase();
+  const filteredRecipes = filterRecipes(query);
+  renderRecipes(filteredRecipes);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  const mainElement = document.querySelector("main")
-  recipes.forEach(recipe => {
-    const section = document.createElement("section")
-    section.className = "recipe"
-    const img = document.createElement("img")
-
-    img.src = recipe.image
-    img.alt = recipe.title
-
-    section.appendChild(img)
-    const contentDiv = document.createElement("div")
-    contentDiv.className = "recipe-content"
-    const tagsDiv = document.createElement("div")
-    tagsDiv.className = "tags"
-
-    recipe.tags.forEach(tag => {
-      const span = document.createElement("span")
-      span.className = "tag"
-      span.textContent = tag
-      tagsDiv.appendChild(span)
-    })
-
-    contentDiv.appendChild(tagsDiv)
-    const h2 = document.createElement("h2")
-    h2.textContent = recipe.title
-    contentDiv.appendChild(h2)
-    const ratingSpan = document.createElement("span")
-
-    ratingSpan.className = "rating"
-    ratingSpan.setAttribute("role", "img")
-    ratingSpan.setAttribute("aria-label", `Rating: ${recipe.rating} out of 5 stars`)
-
-    let ratingHTML = ""
-
-    for (let i = 0; i < recipe.rating; i++) {
-      ratingHTML += '<span aria-hidden="true">⭐</span>'
-    }
-    for (let i = recipe.rating; i < 5; i++) {
-      ratingHTML += '<span aria-hidden="true">☆</span>'
-    }
-
-    ratingSpan.innerHTML = ratingHTML
-    contentDiv.appendChild(ratingSpan)
-    const p = document.createElement("p")
-    p.className = "description"
-    p.textContent = recipe.description
-    contentDiv.appendChild(p)
-    section.appendChild(contentDiv)
-    mainElement.appendChild(section)
-  })
-})
+  init();
+  const searchForm = document.querySelector('header form');
+  searchForm.addEventListener("submit", searchHandler);
+});
