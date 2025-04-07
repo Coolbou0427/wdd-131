@@ -56,12 +56,11 @@ nav a:hover {
   color: var(--nav-hover-text);
 }
 
-/* Ensure main content doesn't get overlapped by the fixed footer */
 main {
   padding: 1em;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 80px; /* Extra bottom padding to avoid overlap */
+  padding-bottom: 80px; 
 }
 
 .review {
@@ -77,7 +76,6 @@ main {
   font-family: var(--heading-font);
 }
 
-/* Fixed footer at the bottom of the page */
 footer {
   position: fixed;
   bottom: 0;
